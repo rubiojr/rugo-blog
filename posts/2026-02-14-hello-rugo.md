@@ -4,6 +4,12 @@ Welcome to the very first post on this blog — and what better way to kick thin
 
 Rugo is a Ruby-inspired language that compiles to native binaries through Go. It brings the warmth and expressiveness of Ruby syntax to the world of fast, standalone executables. No runtime to install, no dependencies to chase — just pure joy, compiled.
 
+## Getting Started
+
+Rugo requires Go 1.24+. Install it with a single command:
+
+<img src="terminal-install.svg" alt="Installing Rugo from a terminal" style="max-width:100%;border-radius:10px;margin:1.5rem 0;">
+
 ## Your First Rugo Program
 
 Every great journey starts with a hello:

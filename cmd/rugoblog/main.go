@@ -24,6 +24,9 @@ var templateFS embed.FS
 //go:embed goro.svg
 var goroSVG []byte
 
+//go:embed terminal-install.svg
+var terminalInstallSVG []byte
+
 type Post struct {
 	Slug  string
 	Title string
@@ -153,6 +156,11 @@ func run() error {
 	// Write embedded mascot logo
 	if err := os.WriteFile(filepath.Join(outDir, "goro.svg"), goroSVG, 0o644); err != nil {
 		return fmt.Errorf("writing goro.svg: %w", err)
+	}
+
+	// Write terminal install SVG
+	if err := os.WriteFile(filepath.Join(outDir, "terminal-install.svg"), terminalInstallSVG, 0o644); err != nil {
+		return fmt.Errorf("writing terminal-install.svg: %w", err)
 	}
 
 	// Render index
