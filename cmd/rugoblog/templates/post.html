@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Post.Title}} — Rugo Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+    {{template "style.html"}}
+
+    /* ── Post layout ─────────────────────────────────── */
+
+    .post-header {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 3rem 2rem 0;
+    }
+
+    .post-header .back {
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .post-header .back:hover { color: var(--link); }
+
+    .post-header .date {
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        margin: 1.5rem 0 0.4rem;
+    }
+
+    .post-header h1 {
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        margin: 0 0 0.5rem;
+        line-height: 1.15;
+    }
+
+    .post-header .desc {
+        font-size: 1.08rem;
+        color: var(--muted);
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+    }
+
+    /* ── Main content ────────────────────────────────── */
+
+    .main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem 5rem;
+    }
+
+    /* ── Prev/Next nav ───────────────────────────────── */
+
+    .post-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .post-nav a {
+        display: block;
+        padding: 0.8rem 1.2rem;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--fg);
+        font-size: 0.9rem;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        max-width: 45%;
+    }
+
+    .post-nav a:hover {
+        border-color: var(--accent);
+        background: var(--surface);
+    }
+
+    .post-nav .label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+    }
+
+    .post-nav .p-title {
+        font-weight: 600;
+    }
+
+    .post-nav .next { margin-left: auto; text-align: right; }
+
+    @media (max-width: 600px) {
+        .post-header { padding: 2rem 1.5rem 0; }
+        .post-header h1 { font-size: 1.9rem; }
+        .main { padding: 0 1.5rem 4rem; }
+        .post-nav { flex-direction: column; }
+        .post-nav a { max-width: 100%; }
+    }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/rubiojr/rugo" class="github-link" title="Rugo on GitHub" aria-label="Rugo on GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+
+    <div class="post-header">
+        <a href="index.html" class="back"><img src="goro.svg" alt="Goro" class="mascot-small"> Back to blog</a>
+        <div class="date">{{.Post.DateFmt}}</div>
+        <h1>{{.Post.Title}}</h1>
+        <p class="desc">{{.Post.Desc}}</p>
+    </div>
+
+    <div class="main">
+        <article class="prose">
+            {{.Post.HTML}}
+        </article>
+
+        <div class="post-nav">
+            {{if .Post.Prev}}
+            <a href="{{.Post.Prev.Slug}}.html" class="prev">
+                <div class="label">← Newer</div>
+                <div class="p-title">{{.Post.Prev.Title}}</div>
+            </a>
+            {{end}}
+            {{if .Post.Next}}
+            <a href="{{.Post.Next.Slug}}.html" class="next">
+                <div class="label">Older →</div>
+                <div class="p-title">{{.Post.Next.Title}}</div>
+            </a>
+            {{end}}
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/ruby.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

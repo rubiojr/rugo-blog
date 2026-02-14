@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rugo Blog</title>
+    <meta name="description" content="Notes, ideas, and experiments with Rugo">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+    {{template "style.html"}}
+
+    /* ── Blog index ──────────────────────────────────── */
+
+    .header {
+        text-align: center;
+        padding: 4rem 2rem 2rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin: 0 0 0.5rem;
+        line-height: 1.1;
+        color: var(--fg);
+    }
+
+    .rugo-glow {
+        color: #e83a3a;
+        display: inline-block;
+        text-shadow:
+            0 0 10px rgba(232, 58, 58, 0.3),
+            0 0 40px rgba(232, 58, 58, 0.12);
+    }
+
+    .header .tagline {
+        font-size: 1.1rem;
+        color: var(--muted);
+        font-style: italic;
+        margin-bottom: 2rem;
+    }
+
+    /* ── Post list ───────────────────────────────────── */
+
+    .posts-section {
+        max-width: 720px;
+        margin: 0 auto 4rem;
+        padding: 0 2rem;
+    }
+
+    .posts-section h2 {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        margin-bottom: 1.2rem;
+    }
+
+    .post-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .post-card {
+        display: block;
+        padding: 1.3rem 1.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--fg);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.15s ease, border-color 0.2s ease,
+                    background 0.2s ease;
+    }
+
+    .post-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(90deg,
+            transparent,
+            rgba(212, 85, 85, 0.04),
+            transparent);
+        transition: left 0.5s ease;
+    }
+
+    .post-card:hover::before {
+        left: 120%;
+    }
+
+    .post-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent);
+        background: var(--surface);
+        box-shadow: 0 4px 20px rgba(212, 85, 85, 0.06);
+    }
+
+    .post-card .date {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        margin-bottom: 0.25rem;
+    }
+
+    .post-card .title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+    }
+
+    .post-card .desc {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.5;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-style: italic;
+        opacity: 0.6;
+    }
+
+    @media (max-width: 600px) {
+        .header { padding: 3rem 1.5rem 1.5rem; }
+        .header h1 { font-size: 2.2rem; }
+        .posts-section { padding: 0 1.5rem; }
+    }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/rubiojr/rugo" class="github-link" title="Rugo on GitHub" aria-label="Rugo on GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+
+    <div class="header">
+        <img src="goro.svg" alt="Goro, the Rugo mascot" class="mascot">
+        <h1><span class="rugo-glow">Rugo</span> Blog</h1>
+        <p class="tagline">Notes, ideas, and experiments with Rugo</p>
+    </div>
+
+    <div class="posts-section">
+        <h2>Posts</h2>
+        <div class="post-list">
+            {{range .Posts}}
+            <a href="{{.Slug}}.html" class="post-card">
+                <div class="date">{{.DateFmt}}</div>
+                <div class="title">{{.Title}}</div>
+                <div class="desc">{{.Desc}}</div>
+            </a>
+            {{end}}
+        </div>
+    </div>
+
+    <div class="footer">
+        Powered by Rugo 🐉
+    </div>
+</body>
+</html>

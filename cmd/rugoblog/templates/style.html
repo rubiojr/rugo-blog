@@ -1,0 +1,240 @@
+/* ── Rugo Blog Design System ─────────────────────────── */
+
+:root {
+    --bg:      #121215;
+    --surface: #18181c;
+    --fg:      #d4ccc8;
+    --muted:   #706a68;
+    --accent:  #d45555;
+    --link:    #e87878;
+    --border:  #252528;
+    --code-bg: #0e0e11;
+    --green:   #8aca6a;
+    --orange:  #e8a468;
+    --red:     #d45555;
+    --purple:  #c49adf;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    font-size: 17px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                 Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg);
+    color: var(--fg);
+    margin: 0;
+    line-height: 1.7;
+}
+
+a { color: var(--link); }
+
+/* ── Prose content ───────────────────────────────────── */
+
+.prose h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 3rem 0 0.8rem;
+    padding-top: 0.5rem;
+    color: var(--fg);
+}
+
+.prose h3 {
+    font-size: 1.18rem;
+    font-weight: 600;
+    margin: 2.2rem 0 0.5rem;
+    color: var(--fg);
+}
+
+.prose p {
+    margin: 0 0 1.15rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.prose a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 120, 120, 0.2);
+    transition: border-color 0.2s;
+}
+
+.prose a:hover { border-bottom-color: var(--link); }
+
+.prose strong {
+    color: #e0e0e0;
+    font-weight: 600;
+}
+
+.prose em { color: var(--muted); }
+
+/* ── Code ────────────────────────────────────────────── */
+
+.prose code {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em;
+}
+
+.prose :not(pre) > code {
+    background: var(--code-bg);
+    color: var(--orange);
+    padding: 0.15em 0.45em;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+}
+
+.prose pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    line-height: 1.6;
+    font-size: 0.92rem;
+}
+
+.prose pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--fg);
+}
+
+/* ── Blockquotes ─────────────────────────────────────── */
+
+.prose blockquote {
+    margin: 1.5rem 0;
+    padding: 0.8rem 1.3rem;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    background: var(--surface);
+    color: var(--muted);
+    font-style: italic;
+}
+
+.prose blockquote p { margin-bottom: 0.5rem; }
+.prose blockquote p:last-child { margin-bottom: 0; }
+
+/* ── Lists ───────────────────────────────────────────── */
+
+.prose ul, .prose ol {
+    padding-left: 1.5rem;
+    margin: 0 0 1.15rem;
+}
+
+.prose li {
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.prose li::marker { color: var(--accent); }
+
+/* ── HR ──────────────────────────────────────────────── */
+
+.prose hr {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    max-width: 100px;
+    margin: 3rem auto;
+}
+
+/* ── Tables ──────────────────────────────────────────── */
+
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.prose table th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    border-bottom: 2px solid var(--border);
+    color: var(--accent);
+}
+
+.prose table td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* ── Scrollbar ───────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+::selection { background: rgba(212, 85, 85, 0.2); }
+
+/* ── GitHub link ─────────────────────────────────────── */
+
+.github-link {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    color: var(--muted);
+    transition: color 0.2s ease;
+    line-height: 1;
+}
+
+.github-link:hover { color: var(--fg); }
+
+.github-link svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* ── Mascot ──────────────────────────────────────────── */
+
+.mascot {
+    width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto 1rem;
+    filter: drop-shadow(0 0 20px rgba(224, 64, 64, 0.25));
+}
+
+.mascot-small {
+    width: 22px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 0.3rem;
+    filter: drop-shadow(0 0 6px rgba(224, 64, 64, 0.3));
+}
+
+/* ── Syntax highlighting (highlight.js overrides) ────── */
+
+.hljs { background: transparent; color: var(--fg); }
+.hljs-keyword,
+.hljs-literal,
+.hljs-built_in      { color: var(--accent); }
+.hljs-string,
+.hljs-regexp         { color: var(--green); }
+.hljs-number         { color: var(--purple); }
+.hljs-title,
+.hljs-function       { color: #6eb3f7; }
+.hljs-variable,
+.hljs-attr           { color: var(--orange); }
+.hljs-symbol         { color: var(--orange); }
+.hljs-comment        { color: var(--muted); font-style: italic; }
+.hljs-meta,
+.hljs-meta .hljs-keyword { color: var(--muted); }
+.hljs-class .hljs-title  { color: #e8a468; }
+.hljs-params         { color: var(--fg); }
+.hljs-subst          { color: var(--fg); }
+.hljs-type           { color: var(--purple); }
