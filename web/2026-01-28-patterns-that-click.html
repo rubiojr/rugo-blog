@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patterns That Click — Rugo Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+     
+
+:root {
+    --bg:      #121215;
+    --surface: #18181c;
+    --fg:      #d4ccc8;
+    --muted:   #706a68;
+    --accent:  #d45555;
+    --link:    #e87878;
+    --border:  #252528;
+    --code-bg: #0e0e11;
+    --green:   #8aca6a;
+    --orange:  #e8a468;
+    --red:     #d45555;
+    --purple:  #c49adf;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    font-size: 17px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                 Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg);
+    color: var(--fg);
+    margin: 0;
+    line-height: 1.7;
+}
+
+a { color: var(--link); }
+
+ 
+
+.prose h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 3rem 0 0.8rem;
+    padding-top: 0.5rem;
+    color: var(--fg);
+}
+
+.prose h3 {
+    font-size: 1.18rem;
+    font-weight: 600;
+    margin: 2.2rem 0 0.5rem;
+    color: var(--fg);
+}
+
+.prose p {
+    margin: 0 0 1.15rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.prose a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 120, 120, 0.2);
+    transition: border-color 0.2s;
+}
+
+.prose a:hover { border-bottom-color: var(--link); }
+
+.prose strong {
+    color: #e0e0e0;
+    font-weight: 600;
+}
+
+.prose em { color: var(--muted); }
+
+ 
+
+.prose code {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em;
+}
+
+.prose :not(pre) > code {
+    background: var(--code-bg);
+    color: var(--orange);
+    padding: 0.15em 0.45em;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+}
+
+.prose pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    line-height: 1.6;
+    font-size: 0.92rem;
+}
+
+.prose pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--fg);
+}
+
+ 
+
+.prose blockquote {
+    margin: 1.5rem 0;
+    padding: 0.8rem 1.3rem;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    background: var(--surface);
+    color: var(--muted);
+    font-style: italic;
+}
+
+.prose blockquote p { margin-bottom: 0.5rem; }
+.prose blockquote p:last-child { margin-bottom: 0; }
+
+ 
+
+.prose ul, .prose ol {
+    padding-left: 1.5rem;
+    margin: 0 0 1.15rem;
+}
+
+.prose li {
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.prose li::marker { color: var(--accent); }
+
+ 
+
+.prose hr {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    max-width: 100px;
+    margin: 3rem auto;
+}
+
+ 
+
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.prose table th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    border-bottom: 2px solid var(--border);
+    color: var(--accent);
+}
+
+.prose table td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+ 
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+::selection { background: rgba(212, 85, 85, 0.2); }
+
+ 
+
+.github-link {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    color: var(--muted);
+    transition: color 0.2s ease;
+    line-height: 1;
+}
+
+.github-link:hover { color: var(--fg); }
+
+.github-link svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+ 
+
+.hljs { background: transparent; color: var(--fg); }
+.hljs-keyword,
+.hljs-literal,
+.hljs-built_in      { color: var(--accent); }
+.hljs-string,
+.hljs-regexp         { color: var(--green); }
+.hljs-number         { color: var(--purple); }
+.hljs-title,
+.hljs-function       { color: #6eb3f7; }
+.hljs-variable,
+.hljs-attr           { color: var(--orange); }
+.hljs-symbol         { color: var(--orange); }
+.hljs-comment        { color: var(--muted); font-style: italic; }
+.hljs-meta,
+.hljs-meta .hljs-keyword { color: var(--muted); }
+.hljs-class .hljs-title  { color: #e8a468; }
+.hljs-params         { color: var(--fg); }
+.hljs-subst          { color: var(--fg); }
+.hljs-type           { color: var(--purple); }
+
+
+     
+
+    .post-header {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 3rem 2rem 0;
+    }
+
+    .post-header .back {
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .post-header .back:hover { color: var(--link); }
+
+    .post-header .date {
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        margin: 1.5rem 0 0.4rem;
+    }
+
+    .post-header h1 {
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        margin: 0 0 0.5rem;
+        line-height: 1.15;
+    }
+
+    .post-header .desc {
+        font-size: 1.08rem;
+        color: var(--muted);
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+    }
+
+     
+
+    .main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem 5rem;
+    }
+
+     
+
+    .post-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .post-nav a {
+        display: block;
+        padding: 0.8rem 1.2rem;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--fg);
+        font-size: 0.9rem;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        max-width: 45%;
+    }
+
+    .post-nav a:hover {
+        border-color: var(--accent);
+        background: var(--surface);
+    }
+
+    .post-nav .label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+    }
+
+    .post-nav .p-title {
+        font-weight: 600;
+    }
+
+    .post-nav .next { margin-left: auto; text-align: right; }
+
+    @media (max-width: 600px) {
+        .post-header { padding: 2rem 1.5rem 0; }
+        .post-header h1 { font-size: 1.9rem; }
+        .main { padding: 0 1.5rem 4rem; }
+        .post-nav { flex-direction: column; }
+        .post-nav a { max-width: 100%; }
+    }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/rubiojr/rugo" class="github-link" title="Rugo on GitHub" aria-label="Rugo on GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+
+    <div class="post-header">
+        <a href="index.html" class="back">← Back to blog</a>
+        <div class="date">January 28, 2026</div>
+        <h1>Patterns That Click</h1>
+        <p class="desc">Rugo borrows ideas from Ruby and Go and makes them feel natural in a compiled language. Let&#39;s look at some everyday patterns.</p>
+    </div>
+
+    <div class="main">
+        <article class="prose">
+            <h2 id="guard-clauses">Guard Clauses</h2>
+<p>Rugo encourages early returns to keep your code flat and readable:</p>
+<pre><code class="language-ruby">import &quot;strings&quot;
+
+def process(input)
+  if input == &quot;&quot;
+    return &quot;empty&quot;
+  end
+  if len(input) &gt; 100
+    return &quot;too long&quot;
+  end
+
+  return strings.to_upper(input)
+end
+
+puts process(&quot;&quot;)
+puts process(&quot;hello&quot;)
+</code></pre>
+<pre><code class="language-text">empty
+HELLO
+</code></pre>
+<h2 id="working-with-collections">Working with Collections</h2>
+<p>Loops and conditionals make collection processing clear:</p>
+<pre><code class="language-ruby">numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+squares = []
+for n in numbers
+  if n % 2 == 0
+    squares = append(squares, n * n)
+  end
+end
+
+puts squares
+</code></pre>
+<pre><code class="language-text">[4 16 36 64 100]
+</code></pre>
+<h2 id="hash-patterns">Hash Patterns</h2>
+<p>Hashes are first-class citizens:</p>
+<pre><code class="language-ruby">config = {
+  &quot;host&quot; =&gt; &quot;localhost&quot;,
+  &quot;port&quot; =&gt; 8080,
+  &quot;debug&quot; =&gt; true
+}
+
+host = config[&quot;host&quot;]
+port = config[&quot;port&quot;]
+debug = config[&quot;debug&quot;]
+puts &quot;host: #{host}&quot;
+puts &quot;port: #{port}&quot;
+puts &quot;debug: #{debug}&quot;
+</code></pre>
+<pre><code class="language-text">host: localhost
+port: 8080
+debug: true
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<p>Rugo uses <code>try/or</code> for graceful error handling:</p>
+<pre><code class="language-ruby">import &quot;strconv&quot;
+
+n = try strconv.atoi(&quot;not_a_number&quot;) or 0
+puts &quot;parsed: #{n}&quot;
+
+m = try strconv.atoi(&quot;42&quot;) or 0
+puts &quot;parsed: #{m}&quot;
+</code></pre>
+<pre><code class="language-text">parsed: 0
+parsed: 42
+</code></pre>
+<p>These patterns form the backbone of idiomatic Rugo code. Once they click, you'll find yourself reaching for them instinctively.</p>
+
+        </article>
+
+        <div class="post-nav">
+            
+            <a href="2026-02-10-building-cli-tools.html" class="prev">
+                <div class="label">← Newer</div>
+                <div class="p-title">Building CLI Tools with Rugo</div>
+            </a>
+            
+            
+            <a href="2026-01-15-hello-rugo.html" class="next">
+                <div class="label">Older →</div>
+                <div class="p-title">Hello, Rugo!</div>
+            </a>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/ruby.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

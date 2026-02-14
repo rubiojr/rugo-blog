@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello, Rugo! 💖 — Rugo Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+     
+
+:root {
+    --bg:      #121215;
+    --surface: #18181c;
+    --fg:      #d4ccc8;
+    --muted:   #706a68;
+    --accent:  #d45555;
+    --link:    #e87878;
+    --border:  #252528;
+    --code-bg: #0e0e11;
+    --green:   #8aca6a;
+    --orange:  #e8a468;
+    --red:     #d45555;
+    --purple:  #c49adf;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    font-size: 17px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                 Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg);
+    color: var(--fg);
+    margin: 0;
+    line-height: 1.7;
+}
+
+a { color: var(--link); }
+
+ 
+
+.prose h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 3rem 0 0.8rem;
+    padding-top: 0.5rem;
+    color: var(--fg);
+}
+
+.prose h3 {
+    font-size: 1.18rem;
+    font-weight: 600;
+    margin: 2.2rem 0 0.5rem;
+    color: var(--fg);
+}
+
+.prose p {
+    margin: 0 0 1.15rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.prose a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 120, 120, 0.2);
+    transition: border-color 0.2s;
+}
+
+.prose a:hover { border-bottom-color: var(--link); }
+
+.prose strong {
+    color: #e0e0e0;
+    font-weight: 600;
+}
+
+.prose em { color: var(--muted); }
+
+ 
+
+.prose code {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.88em;
+}
+
+.prose :not(pre) > code {
+    background: var(--code-bg);
+    color: var(--orange);
+    padding: 0.15em 0.45em;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+}
+
+.prose pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    line-height: 1.6;
+    font-size: 0.92rem;
+}
+
+.prose pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--fg);
+}
+
+ 
+
+.prose blockquote {
+    margin: 1.5rem 0;
+    padding: 0.8rem 1.3rem;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    background: var(--surface);
+    color: var(--muted);
+    font-style: italic;
+}
+
+.prose blockquote p { margin-bottom: 0.5rem; }
+.prose blockquote p:last-child { margin-bottom: 0; }
+
+ 
+
+.prose ul, .prose ol {
+    padding-left: 1.5rem;
+    margin: 0 0 1.15rem;
+}
+
+.prose li {
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.prose li::marker { color: var(--accent); }
+
+ 
+
+.prose hr {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    max-width: 100px;
+    margin: 3rem auto;
+}
+
+ 
+
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+.prose table th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    border-bottom: 2px solid var(--border);
+    color: var(--accent);
+}
+
+.prose table td {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+ 
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+::selection { background: rgba(212, 85, 85, 0.2); }
+
+ 
+
+.github-link {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    color: var(--muted);
+    transition: color 0.2s ease;
+    line-height: 1;
+}
+
+.github-link:hover { color: var(--fg); }
+
+.github-link svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+ 
+
+.mascot {
+    width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto 1rem;
+    filter: drop-shadow(0 0 20px rgba(224, 64, 64, 0.25));
+}
+
+.mascot-small {
+    width: 22px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 0.3rem;
+    filter: drop-shadow(0 0 6px rgba(224, 64, 64, 0.3));
+}
+
+ 
+
+.hljs { background: transparent; color: var(--fg); }
+.hljs-keyword,
+.hljs-literal,
+.hljs-built_in      { color: var(--accent); }
+.hljs-string,
+.hljs-regexp         { color: var(--green); }
+.hljs-number         { color: var(--purple); }
+.hljs-title,
+.hljs-function       { color: #6eb3f7; }
+.hljs-variable,
+.hljs-attr           { color: var(--orange); }
+.hljs-symbol         { color: var(--orange); }
+.hljs-comment        { color: var(--muted); font-style: italic; }
+.hljs-meta,
+.hljs-meta .hljs-keyword { color: var(--muted); }
+.hljs-class .hljs-title  { color: #e8a468; }
+.hljs-params         { color: var(--fg); }
+.hljs-subst          { color: var(--fg); }
+.hljs-type           { color: var(--purple); }
+
+
+     
+
+    .post-header {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 3rem 2rem 0;
+    }
+
+    .post-header .back {
+        font-size: 0.85rem;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .post-header .back:hover { color: var(--link); }
+
+    .post-header .date {
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        margin: 1.5rem 0 0.4rem;
+    }
+
+    .post-header h1 {
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        margin: 0 0 0.5rem;
+        line-height: 1.15;
+    }
+
+    .post-header .desc {
+        font-size: 1.08rem;
+        color: var(--muted);
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+    }
+
+     
+
+    .main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem 5rem;
+    }
+
+     
+
+    .post-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .post-nav a {
+        display: block;
+        padding: 0.8rem 1.2rem;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--fg);
+        font-size: 0.9rem;
+        transition: border-color 0.2s ease, background 0.2s ease;
+        max-width: 45%;
+    }
+
+    .post-nav a:hover {
+        border-color: var(--accent);
+        background: var(--surface);
+    }
+
+    .post-nav .label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+    }
+
+    .post-nav .p-title {
+        font-weight: 600;
+    }
+
+    .post-nav .next { margin-left: auto; text-align: right; }
+
+    @media (max-width: 600px) {
+        .post-header { padding: 2rem 1.5rem 0; }
+        .post-header h1 { font-size: 1.9rem; }
+        .main { padding: 0 1.5rem 4rem; }
+        .post-nav { flex-direction: column; }
+        .post-nav a { max-width: 100%; }
+    }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/rubiojr/rugo" class="github-link" title="Rugo on GitHub" aria-label="Rugo on GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+
+    <div class="post-header">
+        <a href="index.html" class="back"><img src="goro.svg" alt="Goro" class="mascot-small"> Back to blog</a>
+        <div class="date">February 14, 2026</div>
+        <h1>Hello, Rugo! 💖</h1>
+        <p class="desc">Welcome to the very first post on this blog — and what better way to kick things off than with a love letter to a little language that stole my heart?</p>
+    </div>
+
+    <div class="main">
+        <article class="prose">
+            <p>Rugo is a Ruby-inspired language that compiles to native binaries through Go. It brings the warmth and expressiveness of Ruby syntax to the world of fast, standalone executables. No runtime to install, no dependencies to chase — just pure joy, compiled.</p>
+<h2 id="your-first-rugo-program">Your First Rugo Program</h2>
+<p>Every great journey starts with a hello:</p>
+<pre><code class="language-ruby">puts &quot;Hello, Rugo! 💖&quot;
+</code></pre>
+<pre><code class="language-text">Hello, Rugo! 💖
+</code></pre>
+<p>Simple, clean, familiar. If you've ever written Ruby, you'll feel right at home.</p>
+<h2 id="a-language-that-feels-like-a-hug">A Language That Feels Like a Hug</h2>
+<p>Rugo keeps things cozy. Variables, strings, and loops all work the way you'd expect:</p>
+<pre><code class="language-ruby">languages = [&quot;Ruby&quot;, &quot;Go&quot;, &quot;Rugo&quot;]
+for i, lang in languages
+  if lang == &quot;Rugo&quot;
+    puts &quot;#{lang} — the best of both worlds!&quot;
+  else
+    puts &quot;#{lang} is lovely too.&quot;
+  end
+end
+</code></pre>
+<pre><code class="language-text">Ruby is lovely too.
+Go is lovely too.
+Rugo — the best of both worlds!
+</code></pre>
+<h2 id="functions-with-heart">Functions with Heart</h2>
+<p>Defining functions is as sweet as it gets:</p>
+<pre><code class="language-ruby">def love(thing)
+  return &quot;I love #{thing}!&quot;
+end
+
+feelings = [&quot;simplicity&quot;, &quot;native binaries&quot;, &quot;Ruby syntax&quot;]
+for feeling in feelings
+  puts love(feeling)
+end
+</code></pre>
+<pre><code class="language-text">I love simplicity!
+I love native binaries!
+I love Ruby syntax!
+</code></pre>
+<h2 id="hashes-and-sweet-data">Hashes and Sweet Data</h2>
+<p>Rugo handles structured data with grace. Colon syntax creates clean hashes with dot access — no brackets needed:</p>
+<pre><code class="language-ruby">valentines = [
+  {name: &quot;Expressiveness&quot;, hearts: 5},
+  {name: &quot;Speed&quot;, hearts: 4},
+  {name: &quot;Simplicity&quot;, hearts: 5}
+]
+
+for i, v in valentines
+  hearts = &quot;&quot;
+  for j in [1, 2, 3, 4, 5]
+    if j &lt;= v.hearts
+      hearts += &quot;💖&quot;
+    end
+  end
+  puts &quot;#{v.name}: #{hearts}&quot;
+end
+</code></pre>
+<pre><code class="language-text">Expressiveness: 💖💖💖💖💖
+Speed: 💖💖💖💖
+Simplicity: 💖💖💖💖💖
+</code></pre>
+<h2 id="a-taste-of-gummy">A Taste of Gummy</h2>
+<p>Rugo has a growing ecosystem of libraries. <a href="https://github.com/rubiojr/gummy">Gummy</a> is a tiny ORM that wraps SQLite with a clean, expressive API — define models, insert records, and query with no SQL strings:</p>
+<pre><code class="language-ruby">require &quot;github.com/rubiojr/gummy&quot; with db
+
+conn = db.open(&quot;:memory:&quot;)
+Users = conn.model(&quot;users&quot;, {name: &quot;text&quot;, age: &quot;integer&quot;})
+
+alice = Users.insert({name: &quot;Alice&quot;, age: 30})
+puts &quot;#{alice.name} is #{alice.age}&quot;
+
+bob = Users.insert({name: &quot;Bob&quot;, age: 25})
+count = Users.tally(nil)
+puts &quot;#{count} users in the database&quot;
+
+conn.close()
+</code></pre>
+<pre><code class="language-text">Alice is 30
+2 users in the database
+</code></pre>
+<p>Models return smart records with dot access — no boilerplate, just data.</p>
+<p>Gummy also has built-in full text search powered by SQLite FTS5:</p>
+<pre><code class="language-ruby">require &quot;github.com/rubiojr/gummy&quot; with db
+
+conn = db.open(&quot;:memory:&quot;)
+Posts = conn.model(&quot;posts&quot;, {title: &quot;text&quot;, body: &quot;text&quot;})
+Posts.searchable([&quot;title&quot;, &quot;body&quot;])
+
+Posts.insert({title: &quot;Hello Rugo&quot;, body: &quot;A lovely intro to the language&quot;})
+Posts.insert({title: &quot;CLI Tools&quot;, body: &quot;Building command-line apps&quot;})
+Posts.insert({title: &quot;Gummy ORM&quot;, body: &quot;A tiny ORM for Rugo with SQLite&quot;})
+
+results = Posts.search(&quot;rugo&quot;, nil)
+for post in results
+  puts post.title
+end
+conn.close()
+</code></pre>
+<pre><code class="language-text">Hello Rugo
+Gummy ORM
+</code></pre>
+<h2 id="compile-and-share-the-love">Compile and Share the Love</h2>
+<p>The magic of Rugo is that your scripts become standalone native binaries:</p>
+<pre><code class="language-bash">rugo build hello.rugo -o hello
+./hello  # runs anywhere — no runtime needed!
+</code></pre>
+<p>That's it. Write something beautiful, compile it, and share it with the world.</p>
+<h2 id="why-rugo">Why Rugo?</h2>
+<p>Rugo sits in a sweet spot: the elegance and readability of Ruby, the performance and portability of compiled Go binaries. Whether you're writing a quick script or building a CLI tool, Rugo makes it a delight.</p>
+<p>This is just the beginning. Stay tuned for more posts exploring what Rugo can do. Until then — happy coding, and happy Valentine's Day! 💖</p>
+
+        </article>
+
+        <div class="post-nav">
+            
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/ruby.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
